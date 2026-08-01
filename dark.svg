@@ -1,98 +1,112 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="100%" height="200">
   <defs>
-    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="#1a1a2e"/>
+    <!-- Background Gradient matching GitHub Dark -->
+    <linearGradient id="bgDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#161b22"/>
       <stop offset="100%" stop-color="#0d1117"/>
-      <animate attributeName="cx" values="50%;60%;40%;50%" dur="8s" repeatCount="indefinite"/>
-    </radialGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+    </linearGradient>
+
+    <!-- Accent Glow Filter -->
+    <filter id="glowDark" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="400" height="400" fill="url(#bgGrad)"/>
+  <!-- Background Card -->
+  <rect width="800" height="200" rx="12" fill="url(#bgDark)" stroke="#30363d" stroke-width="1.5"/>
 
-  <!-- Stars -->
-  <circle cx="50" cy="60" r="2" fill="#58a6ff" opacity="0.8">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="150" cy="30" r="1.5" fill="#58a6ff" opacity="0.6">
-    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="300" cy="80" r="2" fill="#79c0ff" opacity="0.7">
-    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="350" cy="180" r="1.5" fill="#58a6ff" opacity="0.5">
-    <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="80" cy="300" r="1.8" fill="#79c0ff" opacity="0.6">
-    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3.2s" repeatCount="indefinite"/>
-  </circle>
+  <!-- Left Side: Terminal / Code Window -->
+  <g transform="translate(30, 25)">
+    <!-- Terminal Header Bar -->
+    <rect width="360" height="150" rx="8" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+    <circle cx="18" cy="18" r="4" fill="#f85149"/>
+    <circle cx="32" cy="18" r="4" fill="#e3b341"/>
+    <circle cx="46" cy="18" r="4" fill="#3fb950"/>
+    <line x1="0" y1="32" x2="360" y2="32" stroke="#21262d" stroke-width="1"/>
 
-  <!-- Planet Orbit -->
-  <ellipse cx="200" cy="200" rx="120" ry="120" fill="none" stroke="#30363d" stroke-width="1" stroke-dasharray="5,5" opacity="0.5">
-    <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite"/>
-  </ellipse>
+    <!-- Code Typing Simulation -->
+    <g font-family="Consolas, Fira Code, monospace" font-size="12">
+      <!-- Line 1 -->
+      <text x="18" y="55" fill="#e6edf3">
+        <tspan fill="#ff7b72">class</tspan> <tspan fill="#d2a8ff">SoftwareEngineer</tspan>:
+      </text>
 
-  <!-- Planet -->
-  <g filter="url(#glow)">
-    <circle cx="200" cy="80" r="25" fill="#58a6ff">
-      <animate attributeName="r" values="25;28;25" dur="4s" repeatCount="indefinite"/>
+      <!-- Line 2 -->
+      <text x="32" y="78" fill="#e6edf3">
+        <tspan fill="#79c0ff">self</tspan>.stack = [<tspan fill="#a5d6ff">"Python"</tspan>, <tspan fill="#a5d6ff">"DSA"</tspan>, <tspan fill="#a5d6ff">"Logic"</tspan>]
+      </text>
+
+      <!-- Line 3 -->
+      <text x="32" y="101" fill="#e6edf3">
+        <tspan fill="#ff7b72">def</tspan> <tspan fill="#d2a8ff">solve_problem</tspan>(<tspan fill="#79c0ff">self</tspan>):
+      </text>
+
+      <!-- Line 4 with Cursor -->
+      <text x="46" y="124" fill="#7ee787">
+        <tspan fill="#ff7b72">return</tspan> <tspan fill="#a5d6ff">"Optimal Solution O(1)"</tspan>
+      </text>
+
+      <!-- Blinking Cursor -->
+      <rect x="252" y="113" width="7" height="13" fill="#58a6ff">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+  </g>
+
+  <!-- Right Side: Algorithmic Node Mesh & Analytics -->
+  <g transform="translate(430, 25)">
+    <!-- Node Network Lines -->
+    <g stroke="#30363d" stroke-width="1.5">
+      <line x1="60" y1="40" x2="160" y2="30"/>
+      <line x1="160" y1="30" x2="260" y2="70"/>
+      <line x1="60" y1="40" x2="110" y2="100"/>
+      <line x1="110" y1="100" x2="210" y2="110"/>
+      <line x1="260" y1="70" x2="210" y2="110"/>
+      <line x1="160" y1="30" x2="210" y2="110"/>
+    </g>
+
+    <!-- Pulsing Data Signals along edges -->
+    <circle cx="60" cy="40" r="3" fill="#58a6ff" filter="url(#glowDark)">
+      <animateMotion path="M0,0 L100,-10 L200,30" dur="4s" repeatCount="indefinite"/>
     </circle>
-    <!-- Planet ring -->
-    <ellipse cx="200" cy="80" rx="38" ry="8" fill="none" stroke="#79c0ff" stroke-width="2" transform="rotate(-20 200 80)">
-      <animateTransform attributeName="transform" type="rotate" values="-20 200 80;-20 200 80;20 200 80;-20 200 80" dur="8s" repeatCount="indefinite"/>
-    </ellipse>
-  </g>
-
-  <!-- Orbiting moon -->
-  <circle cx="280" cy="160" r="6" fill="#e6edf3" opacity="0.9">
-    <animateMotion dur="6s" repeatCount="indefinite" path="M200,80 C250,20 320,80 280,160 C240,240 160,180 200,80"/>
-  </circle>
-
-  <!-- Floating code brackets -->
-  <g filter="url(#glow)">
-    <text x="60" y="140" font-family="monospace" font-size="20" fill="#58a6ff" opacity="0.7">
-      &lt;/&gt;
-      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0,0;0,-10;0,0" dur="4s" repeatCount="indefinite"/>
-    </text>
-    <text x="310" y="280" font-family="monospace" font-size="24" fill="#79c0ff" opacity="0.6">
-      { }
-      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3.5s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="5s" repeatCount="indefinite"/>
-    </text>
-  </g>
-
-  <!-- GitHub contribution dots animation -->
-  <g transform="translate(250, 300)" opacity="0.8">
-    <rect x="0" y="0" width="8" height="8" rx="2" fill="#0e4429">
-      <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="1.5s" begin="0s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="12" y="0" width="8" height="8" rx="2" fill="#0e4429">
-      <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="24" y="0" width="8" height="8" rx="2" fill="#0e4429">
-      <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="1.5s" begin="0.6s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="36" y="0" width="8" height="8" rx="2" fill="#0e4429">
-      <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="1.5s" begin="0.9s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Center GitHub Logo Animation -->
-  <g transform="translate(200, 200)" filter="url(#glow)">
-    <path d="M-24,-8 C-24,-20 -12,-24 0,-16 C12,-24 24,-20 24,-8 C24,8 0,24 0,24 C0,24 -24,8 -24,-8 Z" 
-          fill="none" stroke="#58a6ff" stroke-width="3">
-      <animate attributeName="stroke-width" values="3;5;3" dur="2s" repeatCount="indefinite"/>
-    </path>
-    <circle cx="0" cy="0" r="30" fill="none" stroke="#30363d" stroke-width="2">
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite"/>
+    <circle cx="60" cy="40" r="3" fill="#3fb950" filter="url(#glowDark)">
+      <animateMotion path="M0,0 L50,60 L150,70" dur="3s" repeatCount="indefinite"/>
     </circle>
+
+    <!-- Graph Nodes -->
+    <circle cx="60" cy="40" r="6" fill="#1f6beb" stroke="#58a6ff" stroke-width="2"/>
+    <circle cx="160" cy="30" r="8" fill="#238636" stroke="#3fb950" stroke-width="2" filter="url(#glowDark)">
+      <animate attributeName="r" values="7;9;7" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="260" cy="70" r="6" fill="#8957e5" stroke="#d2a8ff" stroke-width="2"/>
+    <circle cx="110" cy="100" r="5" fill="#1f6beb" stroke="#58a6ff" stroke-width="2"/>
+    <circle cx="210" cy="110" r="7" fill="#238636" stroke="#3fb950" stroke-width="2"/>
+
+    <!-- Bottom Status Bar -->
+    <g transform="translate(10, 132)">
+      <text x="0" y="0" font-family="Consolas, monospace" font-size="11" fill="#8b949e">
+        ALGORITHMIC EFFICIENCY: <tspan fill="#3fb950" font-weight="bold">HIGH</tspan>
+      </text>
+      <!-- Activity pulse dots -->
+      <g transform="translate(220, -8)">
+        <rect x="0" y="0" width="8" height="8" rx="2" fill="#0e4429">
+          <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="2s" begin="0s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="12" y="0" width="8" height="8" rx="2" fill="#0e4429">
+          <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="24" y="0" width="8" height="8" rx="2" fill="#0e4429">
+          <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="36" y="0" width="8" height="8" rx="2" fill="#0e4429">
+          <animate attributeName="fill" values="#0e4429;#39d353;#0e4429" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+    </g>
   </g>
 </svg>
